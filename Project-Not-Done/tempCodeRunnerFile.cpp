@@ -70,7 +70,7 @@ void Admin_panel(){
         getline(file,user_pass);
         if(compareFunction(username,user_file) && compareFunction(password,user_pass)){
             do{
-                system("cls");
+                //system("cls");
                 adminchoise:
                 cout<<"==> Main-Menu 0\n";
                 pre(2);cout<<"---- Admin Panel option ----\n";
@@ -131,7 +131,8 @@ void Admin_panel(){
                             if(adminchoise==3){
                                 fstream list_coffee;
                                 list_coffee.open("Coffee-List.txt");
-                                int id[50],i=0,t=0;
+                                string id[50];
+                                int i=0,t=0;
                                 string coffee_name[50],price_delete[50];
                                 while (!list_coffee.eof())
                                 {
@@ -140,25 +141,54 @@ void Admin_panel(){
                                     list_coffee>>price_delete[i];
                                     i++;
                                 }list_coffee.close();
+                                cout<<i<<endl;
                                 cout<<"Enter No of item that you want to delete : \n";
                                 cin>>t;
                                 fstream delete_;
-                                delete_.open("Coffe-List.txt",ios::out);
+                                delete_.open("Coffee-List.txt",ios::out);
+                                delete_.clear();
+                                int counter=0;
                                 for(int l=0;l<i;l++){
-                                    if(l==t-1){
-                                    list_coffee<<id[l+1];
-                                    list_coffee<<coffee_name[l+1];
-                                    list_coffee<<price_delete[l+1];
+                                    if(stoi(id[l])==t){
+                                        delete_<<id[l+1]<<" ";
+                                        delete_<<coffee_name[l+1]<<" ";
+                                        delete_<<price_delete[l+1]<<"\n";
+                                        counter = l + 2;
+                                        break;
                                     }else{
-                                        list_coffee<<id[l];
-                                        list_coffee<<coffee_name[l];
-                                        list_coffee<<price_delete[l];
+                                        delete_<<id[l]<<" ";
+                                        delete_<<coffee_name[l]<<" ";
+                                        delete_<<price_delete[l]<<"\n";
+                                        //counter++;
+                                    }
+                                    
+                                }
+                                if (counter<i){
+                                for(int k=counter;k<i;k++){
+                                        delete_<<id[k]<<" ";
+                                        delete_<<coffee_name[k]<<" ";
+                                        delete_<<price_delete[k]<<"\n";
                                     }
                                 }
+                                delete_.close();
                             }
-                            if(adminchoise==4){
-
-                            }
+                            // if(adminchoise==4){
+                            //     int t=0,i;
+                            //     string new_name,new_price;
+                            //     fstream update_file;
+                            //     update_file.open("Coffee-List.txt",ios::out);
+                            //     string tmp_1[50],tmp_2[50],tmp_3[50];
+                            //     while(!update_file.eof()){
+                            //         update_file>>tmp_1[t];
+                            //         update_file>>tmp_2[t];
+                            //         update_file>>tmp_3[t];
+                            //         t++;
+                            //     }update_file.close();
+                            //     cout<<"Enter No you want to update : ";
+                            //     cin>>i;
+                            //     cout<<"Enter new item-name : ";
+                            //     cin>>new_name;
+                            // }
                             if(adminchoise==5){
                                 system("cls");
                                 getmenu();
@@ -234,25 +264,36 @@ void Admin_panel(){
                             }
                             if(adminchoise==7){
                                 int option;
-                                cout<<"Select your option: ";
-                                cout<<"Type 1 to get report by date, type 2 to get all report.";
-                                cin>>option;
+                                int index = 0;
                                 string date;
+                                int *result;
+                                cout<<"Type 1 to get total report by date, type 2 to get total report, type 3 to get all report by item and date, type 4 to get all reply by item"<<endl;
+                                cout<<"Select your option: ";
+                                cin>>option;
                                 switch (option)
                                 {
                                 case 1:
                                     cout<<"Enter date: ";
                                     cin>>date;
-                                    int *result = getReportByDate("History.txt", date);
+                                    result = getReportByDate("History.txt", date);
                                     break;
-                                case 2:
-                                    getAllReport("History.txt");
-                                    int *result;
+                                case 4:
+                                    index = countLineInItemFile("Coffee-List.txt");
+                                    OrderItem *orderItemList;
+                                    orderItemList = getReportByAllItem("Coffee-List.txt", "History.txt");
+                                    cout<<"----------Report-----------"<<endl;
+                                    cout<<" ID TITLE PRICE QUANTITY TOTAL_PRICE DATE"<<endl;
+                                    for (int i=0; i<index; i++){
+                                        cout<<orderItemList[i].itemId<<" "<<orderItemList[i].itemTitle<<" "<<orderItemList[i].itemPrice<<" "<<orderItemList[i].itemQuantity<<" "<<orderItemList[i].itemTotalPrice<<" "<<orderItemList[i].orderDate<<endl;
+                                    }
+                                    cout<<"----------------------------"<<endl;
                                     break;
                                 default:
                                     cout<<"Error!";
                                     break;
                                 }
+                                //Sleep(3000);//system("cls");
+                                //goto adminchoise;
                             }
                             if(adminchoise==8){
                                 fstream employee;
