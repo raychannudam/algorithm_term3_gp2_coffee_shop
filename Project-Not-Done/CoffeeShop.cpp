@@ -173,6 +173,7 @@ void Admin_panel(){
                             if(adminchoise==4){
                                 int t=0;
                                 string i;
+                                int flag = 0;
                                 string new_name,new_price;
                                 fstream update_file;
                                 update_file.open("Coffee-List.txt"); 
@@ -185,7 +186,19 @@ void Admin_panel(){
                                 }update_file.close();
                                 cout<<"Enter No you want to update : ";
                                 cin>>i;
-                                //Valid ID in file//
+
+                                for(int j=0; j<t; j++){
+                                    if (tmp_1[j] == i){
+                                        flag = 1;
+                                        break;
+                                    }
+                                    else{
+                                        flag = 0;
+                                        continue;
+                                    }
+                                }
+                                
+                                if (flag==1){
                                 cout<<"Enter new item-name : ";
                                 cin>>new_name;
                                 cout<<"Enter Price : ";
@@ -205,6 +218,10 @@ void Admin_panel(){
                                     into<<tmp_2[k]<<" ";
                                     into<<tmp_3[k]<<"\n";
                                 }into.close();
+                                }
+                                else{
+                                    cout<<"This item is not listed."<<endl;
+                                }
                             }
                             if(adminchoise==5){
                                 system("cls");
