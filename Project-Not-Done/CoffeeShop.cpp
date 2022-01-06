@@ -400,9 +400,10 @@ void Employee_panel(){
                         getmenu();
                         do{
                             cout<<"\n\tPlace order : "; cin>>order_no;
+                            if(order_no==0){system("cls");goto employee;}
                             cout<<"\tEnter the Quantity : "; cin>>quantity;
                             int i=0;
-                            if(order_no==0){system("cls");goto employee;}
+                            if(quantity==0){system("cls");goto employee;}
                                 while(!file_menu.eof()){
                                     file_menu>>no[i]; file_menu>>coffename[i]; file_menu>>price[i];
                                     i++;
@@ -450,7 +451,9 @@ void Employee_panel(){
                         
                     }while(exit!=1);
                 }else{
-                Employee_panel();
+                    cout<<"This accout is not existed"<<endl;
+                    Sleep(4000);
+                    Employee_panel();
                 }
             }
         }else if(t==2){
