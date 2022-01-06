@@ -1,0 +1,57 @@
+User log in / register - Nita
+Create , Update, Delete Product - Saovty
+Create, Update, Delete Order History - Kanchna
+Generate Report - Udam
+- Total Report
+- Indivdual report
+Combine together - Danet
+
+
+Create Account add receptionist
+
+_User Login
+-----Read and Compare
+{
+    _Create-List-Menu
+    -----Coffee-Menu---> Iteam Name ---> Price 
+    -----Pick Which one
+    -----Write data to "History"
+    -----Recipes
+}
+_Admin Login
+----Read and Compare
+{
+    _Add-Product
+        _Product-Name
+        _Price
+    _Update
+        _Product-Name
+        _Price
+    _announcement
+        _txt-File
+}
+Console{
+    _None-Account
+        ("Create Account for more feature")
+        _Menu
+        _Place_order
+        _Confirm{else->Back-to-List}
+    _User-Login{
+        -Menu
+        -Place_order{
+            Summary
+        }
+        -Confirm{else->Back-to-List}
+        -Payment
+        -User_order_History
+    }
+    _Admin_Login
+    {
+        _Total Cash Today
+        _Add Coffee
+        _Delete Iteam
+        _Backup System
+        _History
+        
+    }
+}

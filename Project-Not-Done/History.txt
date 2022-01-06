@@ -1,0 +1,17 @@
+2 Doppio 6 3 18 512022
+1 Espresso 2 2 4 512022
+3 Fredo 4 2 8 512022
+3 Fredo 4 2 8 512022
+2 Doppio 6 1 6 512022
+2 Doppio 6 3 18 512022
+2 Doppio 6 3 18 512022
+2 Doppio 6 3 18 612022
+2 Doppio 6 3 18 612022
+2 Doppio 6 1 6 612022
+2 Doppio 6 1 6 612022
+2 Doppio 6 1 6 612022
+3 Fredo 4 1 4 612022
+2 Doppio 6 1 6 612022
+3 Fredo 4 1 4 612022
+5 Mocha 6 2 12 612022
+2
