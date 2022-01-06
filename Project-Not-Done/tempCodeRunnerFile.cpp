@@ -60,6 +60,7 @@ void Admin_panel(){
     string num,name,price_1;
     int tmp=0,l=0,k=1;
     float total;
+    system("cls");pre(2);cout<<"---Admin Panel ----\n";
     cout<<"\tEnter your username : ";
     cin>>username;
     cout<<"\tEnter Password : ";
@@ -72,6 +73,7 @@ void Admin_panel(){
                 system("cls");
                 adminchoise:
                 cout<<"==> Main-Menu 0\n";
+                pre(2);cout<<"---- Admin Panel option ----\n";
                 cout<<"1. Total Cash \n";
                 cout<<"2. Add Coffee Item\n";
                 cout<<"3. Delete Item\n";
@@ -127,7 +129,35 @@ void Admin_panel(){
                                     }
                             }
                             if(adminchoise==3){
-                                
+                                fstream list_coffee;
+                                list_coffee.open("Coffee-List.txt");
+                                int id[50],i=0,t=0;
+                                string coffee_name[50],price_delete[50];
+                                while (!list_coffee.eof())
+                                {
+                                    list_coffee>>id[i];
+                                    list_coffee>>coffee_name[i];
+                                    list_coffee>>price_delete[i];
+                                    i++;
+                                }list_coffee.close();
+                                cout<<"Enter No of item that you want to delete : \n";
+                                cin>>t;
+                                fstream delete_;
+                                delete_.open("Coffe-List.txt",ios::out);
+                                for(int l=0;l<i;l++){
+                                    if(l==t-1){
+                                    list_coffee<<id[l+1];
+                                    list_coffee<<coffee_name[l+1];
+                                    list_coffee<<price_delete[l+1];
+                                    }else{
+                                        list_coffee<<id[l];
+                                        list_coffee<<coffee_name[l];
+                                        list_coffee<<price_delete[l];
+                                    }
+                                }
+                            }
+                            if(adminchoise==4){
+
                             }
                             if(adminchoise==5){
                                 system("cls");
@@ -203,7 +233,26 @@ void Admin_panel(){
                                 }
                             }
                             if(adminchoise==7){
-
+                                int option;
+                                cout<<"Select your option: ";
+                                cout<<"Type 1 to get report by date, type 2 to get all report.";
+                                cin>>option;
+                                string date;
+                                switch (option)
+                                {
+                                case 1:
+                                    cout<<"Enter date: ";
+                                    cin>>date;
+                                    int *result = getReportByDate("History.txt", date);
+                                    break;
+                                case 2:
+                                    getAllReport("History.txt");
+                                    int *result;
+                                    break;
+                                default:
+                                    cout<<"Error!";
+                                    break;
+                                }
                             }
                             if(adminchoise==8){
                                 fstream employee;

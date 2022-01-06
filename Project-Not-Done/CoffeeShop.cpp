@@ -60,6 +60,7 @@ void Admin_panel(){
     string num,name,price_1;
     int tmp=0,l=0,k=1;
     float total;
+    system("cls");pre(2);cout<<"---Admin Panel ----\n";
     cout<<"\tEnter your username : ";
     cin>>username;
     cout<<"\tEnter Password : ";
@@ -72,6 +73,7 @@ void Admin_panel(){
                 system("cls");
                 adminchoise:
                 cout<<"==> Main-Menu 0\n";
+                pre(2);cout<<"---- Admin Panel option ----\n";
                 cout<<"1. Total Cash \n";
                 cout<<"2. Add Coffee Item\n";
                 cout<<"3. Delete Item\n";
@@ -127,7 +129,50 @@ void Admin_panel(){
                                     }
                             }
                             if(adminchoise==3){
-                                
+                                fstream list_coffee;
+                                list_coffee.open("Coffee-List.txt");
+                                int id[50],i=0,t=0;
+                                string coffee_name[50],price_delete[50];
+                                while (!list_coffee.eof())
+                                {
+                                    list_coffee>>id[i];
+                                    list_coffee>>coffee_name[i];
+                                    list_coffee>>price_delete[i];
+                                    i++;
+                                }list_coffee.close();
+                                cout<<"Enter No of item that you want to delete : \n";
+                                cin>>t;
+                                fstream delete_;
+                                delete_.open("Coffe-List.txt",ios::out);
+                                delete_.clear();
+                                for(int l=0;l<i;l++){
+                                    if(l==t-1){
+                                        list_coffee<<id[l+1]<<" ";
+                                        list_coffee<<coffee_name[l+1]<<" ";
+                                        list_coffee<<price_delete[l+1]<<"\n";
+                                    }else{
+                                        list_coffee<<id[l]<<" ";
+                                        list_coffee<<coffee_name[l]<<" ";
+                                        list_coffee<<price_delete[l]<<"\n";
+                                    }
+                                }delete_.close();
+                            }
+                            if(adminchoise==4){
+                                int t=0,i;
+                                string new_name,new_price;
+                                fstream update_file;
+                                update_file.open("Coffee-List.txt",ios::out);
+                                string tmp_1[50],tmp_2[50],tmp_3[50];
+                                while(!update_file.eof()){
+                                    update_file>>tmp_1[t];
+                                    update_file>>tmp_2[t];
+                                    update_file>>tmp_3[t];
+                                    t++;
+                                }update_file.close();
+                                cout<<"Enter No you want to update : ";
+                                cin>>i;
+                                cout<<"Enter new item-name : ";
+                                cin>>new_name;
                             }
                             if(adminchoise==5){
                                 system("cls");
