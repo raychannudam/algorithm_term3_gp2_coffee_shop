@@ -175,7 +175,7 @@ void Admin_panel(){
                                 string i;
                                 string new_name,new_price;
                                 fstream update_file;
-                                update_file.open("Coffee-List.txt",ios::out); 
+                                update_file.open("Coffee-List.txt"); 
                                 string tmp_1[50],tmp_2[50],tmp_3[50];
                                 while(!update_file.eof()){
                                     update_file>>tmp_1[t];
@@ -185,6 +185,7 @@ void Admin_panel(){
                                 }update_file.close();
                                 cout<<"Enter No you want to update : ";
                                 cin>>i;
+                                //Valid ID in file//
                                 cout<<"Enter new item-name : ";
                                 cin>>new_name;
                                 cout<<"Enter Price : ";
@@ -200,9 +201,9 @@ void Admin_panel(){
                                 into.open("Coffee-List.txt",ios::out);
                                 into.clear();
                                 for(int k=0;k<t;k++){
-                                    into<<tmp_1[k];
-                                    into<<tmp_2[k];
-                                    into<<tmp_3[k];
+                                    into<<tmp_1[k]<<" ";
+                                    into<<tmp_2[k]<<" ";
+                                    into<<tmp_3[k]<<"\n";
                                 }into.close();
                             }
                             if(adminchoise==5){
