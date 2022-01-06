@@ -1,6 +1,5 @@
 #include <iostream>
 #include <fstream>
-#include <string.h>
 
 using namespace std;
 
@@ -250,7 +249,6 @@ int * getAllReport(string filename){
     return output;
 }
 
-//excecute and return array of object
 OrderItem* getReportByAllItem(string itemFilename, string historyFilename){
 
     int indexInHistory = countLine(historyFilename);
@@ -283,7 +281,6 @@ OrderItem* getReportByAllItem(string itemFilename, string historyFilename){
                 orderItemList1[i].itemPrice = orderItemList[j].itemPrice;
                 orderItemList1[i].itemQuantity = orderItemList1[i].itemQuantity + orderItemList[j].itemQuantity;
                 orderItemList1[i].itemTotalPrice = orderItemList1[i].itemTotalPrice + orderItemList[j].itemTotalPrice;
-                orderItemList1[i].orderDate = "Non-Specific";
             }
         }
     }
@@ -293,3 +290,25 @@ OrderItem* getReportByAllItem(string itemFilename, string historyFilename){
 
 }
 
+int main(){
+    int index1 = countLineInItemFile("Coffee-List.txt");
+    int index0 = countLine("History.txt");
+    OrderItem *orderItemList;
+    orderItemList = readFromFile("History.txt", index0);
+    Item *itemList;
+    itemList = readFromFileItem("Coffee-List.txt", index1);
+    for(int i=0; i<index1; i++){
+        cout<<itemList[i].itemId<<endl;
+    }
+    cout<<"---------"<<endl;
+    for(int i=0; i<index0; i++){
+        cout<<orderItemList[i].itemId<<endl;
+    }
+    cout<<"---------"<<endl;
+    OrderItem *orderItemListReport;
+    orderItemListReport = getReportByAllItem("Coffee-List.txt", "History.txt");
+    for(int i=0; i<index1; i++){
+        cout<<orderItemListReport[i].itemTitle<<" "<<orderItemListReport[i].itemQuantity<<" "<<orderItemListReport[i].itemTotalPrice<<endl;
+    }
+    return 0;
+}

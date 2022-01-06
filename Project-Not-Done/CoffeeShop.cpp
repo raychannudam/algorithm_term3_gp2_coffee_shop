@@ -70,7 +70,7 @@ void Admin_panel(){
         getline(file,user_pass);
         if(compareFunction(username,user_file) && compareFunction(password,user_pass)){
             do{
-                system("cls");
+                //system("cls");
                 adminchoise:
                 cout<<"==> Main-Menu 0\n";
                 pre(2);cout<<"---- Admin Panel option ----\n";
@@ -249,25 +249,36 @@ void Admin_panel(){
                             }
                             if(adminchoise==7){
                                 int option;
-                                cout<<"Select your option: ";
-                                cout<<"Type 1 to get report by date, type 2 to get all report.";
-                                cin>>option;
+                                int index = 0;
                                 string date;
+                                int *result;
+                                cout<<"Type 1 to get total report by date, type 2 to get total report, type 3 to get all report by item and date, type 4 to get all reply by item"<<endl;
+                                cout<<"Select your option: ";
+                                cin>>option;
                                 switch (option)
                                 {
                                 case 1:
                                     cout<<"Enter date: ";
                                     cin>>date;
-                                    int *result = getReportByDate("History.txt", date);
+                                    result = getReportByDate("History.txt", date);
                                     break;
-                                case 2:
-                                    getAllReport("History.txt");
-                                    int *result;
+                                case 4:
+                                    index = countLineInItemFile("Coffee-List.txt");
+                                    OrderItem *orderItemList;
+                                    orderItemList = getReportByAllItem("Coffee-List.txt", "History.txt");
+                                    cout<<"----------Report-----------"<<endl;
+                                    cout<<" ID TITLE PRICE QUANTITY TOTAL_PRICE DATE"<<endl;
+                                    for (int i=0; i<index; i++){
+                                        cout<<orderItemList[i].itemId<<" "<<orderItemList[i].itemTitle<<" "<<orderItemList[i].itemPrice<<" "<<orderItemList[i].itemQuantity<<" "<<orderItemList[i].itemTotalPrice<<" "<<orderItemList[i].orderDate<<endl;
+                                    }
+                                    cout<<"----------------------------"<<endl;
                                     break;
                                 default:
                                     cout<<"Error!";
                                     break;
                                 }
+                                //Sleep(3000);//system("cls");
+                                //goto adminchoise;
                             }
                             if(adminchoise==8){
                                 fstream employee;

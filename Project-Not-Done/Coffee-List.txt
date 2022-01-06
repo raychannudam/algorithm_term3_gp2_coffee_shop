@@ -1,6 +1,6 @@
-1 Espresso 2$
-2 Doppio 6$
-3 Fredo 4$
-4 Latte 3$
-5 Mocha 6$
-6 Flat-White 3$
+1 Espresso 2
+2 Doppio 6
+3 Fredo 4
+4 Latte 3
+5 Mocha 6
+6 Flat-White 3
