@@ -170,23 +170,41 @@ void Admin_panel(){
                                 }
                                 delete_.close();
                             }
-                            // if(adminchoise==4){
-                            //     int t=0,i;
-                            //     string new_name,new_price;
-                            //     fstream update_file;
-                            //     update_file.open("Coffee-List.txt",ios::out);
-                            //     string tmp_1[50],tmp_2[50],tmp_3[50];
-                            //     while(!update_file.eof()){
-                            //         update_file>>tmp_1[t];
-                            //         update_file>>tmp_2[t];
-                            //         update_file>>tmp_3[t];
-                            //         t++;
-                            //     }update_file.close();
-                            //     cout<<"Enter No you want to update : ";
-                            //     cin>>i;
-                            //     cout<<"Enter new item-name : ";
-                            //     cin>>new_name;
-                            // }
+                            if(adminchoise==4){
+                                int t=0;
+                                string i;
+                                string new_name,new_price;
+                                fstream update_file;
+                                update_file.open("Coffee-List.txt",ios::out); 
+                                string tmp_1[50],tmp_2[50],tmp_3[50];
+                                while(!update_file.eof()){
+                                    update_file>>tmp_1[t];
+                                    update_file>>tmp_2[t];
+                                    update_file>>tmp_3[t];
+                                    t++;
+                                }update_file.close();
+                                cout<<"Enter No you want to update : ";
+                                cin>>i;
+                                cout<<"Enter new item-name : ";
+                                cin>>new_name;
+                                cout<<"Enter Price : ";
+                                cin>>new_price;
+                                for(int l=0;l<t;l++){
+                                    if(compareFunction(i,tmp_1[l])){
+                                        tmp_1[l]=i;
+                                        tmp_2[l]=new_name;
+                                        tmp_3[l]=new_price;
+                                    }
+                                }
+                                fstream into;
+                                into.open("Coffee-List.txt",ios::out);
+                                into.clear();
+                                for(int k=0;k<t;k++){
+                                    into<<tmp_1[k];
+                                    into<<tmp_2[k];
+                                    into<<tmp_3[k];
+                                }into.close();
+                            }
                             if(adminchoise==5){
                                 system("cls");
                                 getmenu();
